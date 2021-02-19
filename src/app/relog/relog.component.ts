@@ -47,6 +47,11 @@ export class RelogComponent implements OnInit {
     this.register = false;
   }
 
+  onRegister() {
+    this.login = false;
+    this.register = true;
+  }
+
   loginSub() {
     console.log("Email is: " + this.uService.loginForm.value.email);
     console.log("Password is: " + this.uService.loginForm.value.pass);

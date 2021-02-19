@@ -1,32 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div *ngIf="!quizOver">
-      <app-question [questionIndex]="currentIndex" (answers)="receiveAnswers($event)"
-        (totalQuestions)="getTotalQuestions($event)">
-      </app-question>
-      <br>
-    </div>
-  </div>
-  <!-- <button class="btn btn-outline-primary" (click)="goPrevious()">Previous</button>
+<div class="d-flex align-items-center light-blue-gradient" style="height: 100vh;">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card rounded-0 shadow">
+          <div class="card-body">
+
+            <div *ngIf="!quizOver">
+              <app-question [questionIndex]="currentIndex" (answers)="receiveAnswers($event)"
+                (totalQuestions)="getTotalQuestions($event)">
+              </app-question>
+              <br>
+            </div>
+
+            <!-- <button class="btn btn-outline-primary" (click)="goPrevious()">Previous</button>
   <button class="btn btn-outline-success" (click)="goNext()">Next</button> -->
 
-  <div *ngIf="quizOver" class="border">
-    <h4>Quiz is Over!</h4>
-    Your score is {{score}} / {{totalQuestions}}
-    <br>
-    <h3>Top Ten Scores</h3>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Score</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let use of userD">
-          <td>{{use.payload.doc.data().name}}</td>
-          <td>{{use.payload.doc.data().score}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <button (click)="restartQuiz()">Retake Quiz</button>
+            <div *ngIf="quizOver" class="border">
+              <h4>Quiz is Over!</h4>
+              Your score is {{score}} / {{totalQuestions}}
+              <br>
+              <h3>Top Ten Scores</h3>
+              <table>
+                <thead>
+                  <th>Name</th>
+                  <th>Score</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let use of userD">
+                    <td>{{use.payload.doc.data().name}}</td>
+                    <td>{{use.payload.doc.data().score}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button (click)="restartQuiz()">Retake Quiz</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

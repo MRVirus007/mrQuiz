@@ -57,7 +57,7 @@ export class UserService {
   // }
 
 
-  updateDoc(email: string, score: string) {
+  updateDoc(email: string, score: number) {
     let doc = this.firestore.collection('users', ref => ref.where('email', '==', email));
     doc.snapshotChanges().subscribe((res: any) => {
       let id = res[0].payload.doc.id;

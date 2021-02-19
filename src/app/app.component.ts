@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mrQuiz';
   constructor(public router: Router) { }
   ngOnInit() {
     this.router.navigate(['/relog']);

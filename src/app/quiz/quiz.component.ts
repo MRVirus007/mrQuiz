@@ -16,7 +16,7 @@ export class QuizComponent implements OnInit {
 
   currentIndex = 0;
 
-  score;
+  score: number = 0;
   totalQuestions;
   quizOver;
   email;
@@ -27,13 +27,6 @@ export class QuizComponent implements OnInit {
     new EventEmitter<{ user_answer: string, correct_answer: string }>();
 
   ngOnInit(): void {
-    // if (this.question.userAnswer === this.question.correctAnswer) {
-    //   this.question.userAnswer.color = "green"
-    // }
-    // else {
-    //   this.question.userAnswer.color = "red";
-    // }
-    console.log("Your Email is " + this.actRoute.snapshot.paramMap.get('email'));
     this.uService.getUsers().subscribe(res => {
       this.userD = res;
       console.log(this.userD);
@@ -57,22 +50,17 @@ export class QuizComponent implements OnInit {
     if (this.question.userAnswer === this.question.correctAnswer) {
       this.score++;
     }
-    else {
-      //this.question.color = "red";
-    }
   }
 
   endQuiz() {
     this.quizOver = true;
-    //alert('Quiz Over! Score is ' + this.score + '/ ' + this.totalQuestions);
-    console.log("Your Email is " + this.actRoute.snapshot.paramMap.get('email'));
     this.email = this.actRoute.snapshot.paramMap.get('email');
     this.uService.updateDoc(this.email, this.score);
   }
 
-  goPrevious() {
-    this.currentIndex--;
-  }
+  // goPrevious() {
+  //   this.currentIndex--;
+  // }
 
   receiveAnswers(receivedAnswers) {
     console.log(receivedAnswers);
