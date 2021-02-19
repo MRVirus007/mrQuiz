@@ -1,0 +1,10 @@
+Question {{questionIndex+1}} of {{questions.length}}
+<br>
+<h5>{{currentQuestion}}</h5>
+<fieldset class="fieldseti">
+  <label [ngClass]="this.labeli" *ngFor="let option of currentOptions">
+    <input [ngClass]="this.inputi" id="usera" (click)="setUserAnswer(option)" type="radio" value={{option}}
+      name="answer">
+    <span>{{option}}</span>
+  </label>
+</fieldset>

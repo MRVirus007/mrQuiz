@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="!quizOver">
+      <app-question [questionIndex]="currentIndex" (answers)="receiveAnswers($event)"
+        (totalQuestions)="getTotalQuestions($event)">
+      </app-question>
+      <br>
+    </div>
+  </div>
+  <!-- <button class="btn btn-outline-primary" (click)="goPrevious()">Previous</button>
+  <button class="btn btn-outline-success" (click)="goNext()">Next</button> -->
+
+  <div *ngIf="quizOver" class="border">
+    <h4>Quiz is Over!</h4>
+    Your score is {{score}} / {{totalQuestions}}
+    <br>
+    <button (click)="restartQuiz()">Retake Quiz</button>
+  </div>
+</div>
