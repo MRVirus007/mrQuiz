@@ -5,6 +5,7 @@ import { RelogComponent } from './relog/relog.component';
 
 const routes: Routes = [
   { path: 'quiz', component: QuizComponent },
+  { path: 'quiz/:email', component: QuizComponent },
   { path: 'relog', component: RelogComponent }
 ];
 

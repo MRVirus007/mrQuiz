@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
@@ -14,7 +15,12 @@ export class RelogComponent implements OnInit {
   validFields = false;
   checkUser;
   checkPass;
-  constructor(public uService: UserService, public router: Router, public zone: NgZone) { }
+  userId;
+  getUserName;
+  constructor(public uService: UserService,
+    public router: Router,
+    public zone: NgZone,
+    public firestore: AngularFirestore) { }
 
 
   ngOnInit() {
@@ -51,12 +57,14 @@ export class RelogComponent implements OnInit {
         this.checkPass = res[i].payload.doc.data()['pass'];
         if (this.uService.loginForm.value.email === this.checkUser && this.uService.loginForm.value.pass === this.checkPass) {
           console.log("correct Inputs");
+          this.validFields = false;
           this.zone.run(() => {
-            this.router.navigate(['/quiz']);
+            this.router.navigate(['/quiz', this.uService.loginForm.value.email]);
           });
         }
         else {
-          console.log("wrond details")
+          console.log("wrond details");
+          this.validFields = true;
         }
         console.log(this.checkUser);
       }

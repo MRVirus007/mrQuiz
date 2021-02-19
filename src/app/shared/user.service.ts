@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { reduce, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class UserService {
 
   constructor(private firestore: AngularFirestore) { }
-
+  user: any;
   //userList = [];
   //addUser = users => this.userList.push(users);
 
@@ -49,9 +50,19 @@ export class UserService {
     return this.firestore.collection("users").snapshotChanges();
   }
 
-  updatePolicy(policy) {
-    delete policy.id;
-    this.firestore.doc('policies/' + policy.id).update(policy);
+  // updateScore(email, score) {
+  //   return this.firestore.collection("users", ref => ref.where('email', '==', email))
+  //     .doc(data.payload.doc.id)
+  //     .set({ score: score }, { merge: true });
+  // }
+
+
+  updateDoc(email: string, score: string) {
+    let doc = this.firestore.collection('users', ref => ref.where('email', '==', email));
+    doc.snapshotChanges().subscribe((res: any) => {
+      let id = res[0].payload.doc.id;
+      this.firestore.collection('users').doc(id).update({ score: score });
+    });
   }
 
 }

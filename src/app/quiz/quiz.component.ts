@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { QuestionComponent } from '../question/question.component';
-
+import { UserService } from '../shared/user.service'
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -18,7 +19,8 @@ export class QuizComponent implements OnInit {
   score;
   totalQuestions;
   quizOver;
-
+  email;
+  userD;
   @ViewChild(QuestionComponent) question: QuestionComponent;
 
   @Output() answers =
@@ -31,9 +33,14 @@ export class QuizComponent implements OnInit {
     // else {
     //   this.question.userAnswer.color = "red";
     // }
+    console.log("Your Email is " + this.actRoute.snapshot.paramMap.get('email'));
+    this.uService.getUsers().subscribe(res => {
+      this.userD = res;
+      console.log(this.userD);
+    })
   }
 
-  constructor() {
+  constructor(public uService: UserService, public actRoute: ActivatedRoute) {
 
   }
 
@@ -57,7 +64,10 @@ export class QuizComponent implements OnInit {
 
   endQuiz() {
     this.quizOver = true;
-    alert('Quiz Over! Score is ' + this.score + '/ ' + this.totalQuestions);
+    //alert('Quiz Over! Score is ' + this.score + '/ ' + this.totalQuestions);
+    console.log("Your Email is " + this.actRoute.snapshot.paramMap.get('email'));
+    this.email = this.actRoute.snapshot.paramMap.get('email');
+    this.uService.updateDoc(this.email, this.score);
   }
 
   goPrevious() {
