@@ -24,7 +24,10 @@ export class RelogComponent implements OnInit {
   onSubmit() {
     this.uService.form.value.user = this.user;
     let data = this.uService.form.value;
-    this.uService.createUser(data)
+    this.uService.createUser(data);
+    this.zone.run(() => {
+      this.router.navigate(['/quiz']);
+    });
   }
 
   getUsers() {

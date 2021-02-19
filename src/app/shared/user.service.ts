@@ -9,10 +9,14 @@ export class UserService {
 
   constructor(private firestore: AngularFirestore) { }
 
+  //userList = [];
+  //addUser = users => this.userList.push(users);
+
   form = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    pass: new FormControl('')
+    pass: new FormControl(''),
+    score: new FormControl('')
   })
 
   loginForm = new FormGroup({
@@ -45,5 +49,9 @@ export class UserService {
     return this.firestore.collection("users").snapshotChanges();
   }
 
+  updatePolicy(policy) {
+    delete policy.id;
+    this.firestore.doc('policies/' + policy.id).update(policy);
+  }
 
 }
