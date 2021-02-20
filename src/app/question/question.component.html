@@ -8,3 +8,7 @@ Question {{questionIndex+1}} of {{questions.length}}
     <span>{{option}}</span>
   </label>
 </fieldset>
+<div>
+  <p *ngIf="this.checkAnswer" style="color:red">You Selected Wrong Option</p>
+  <h6 *ngIf="this.checkAnswer">Correct Option is {{this.correctAnswer}}</h6>
+</div>

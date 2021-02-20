@@ -17,12 +17,12 @@
 }
 
 .labeli>.inputi[type="radio"]:checked+* {
-  color: teal;
+  color: green;
 }
 
 .labeli>.inputi[type="radio"]:checked+*::before {
-  background: radial-gradient(teal 0%, teal 40%, transparent 50%, transparent);
-  border-color: teal;
+  background: radial-gradient(green 0%, green 40%, transparent 50%, transparent);
+  border-color: green;
 }
 
 .labeli>.inputi[type="radio"]+* {
@@ -66,4 +66,8 @@
 .labeli2>.inputi2[type="radio"]+* {
   display: inline-block;
   padding: 0.5rem 1rem;
+}
+
+h6 {
+  color: green;
 }

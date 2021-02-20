@@ -15,7 +15,6 @@ export class QuizComponent implements OnInit {
   fieldseti = "fieldseti";
 
   currentIndex = 0;
-
   score: number = 0;
   totalQuestions;
   quizOver;

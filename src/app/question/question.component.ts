@@ -17,7 +17,7 @@ export class QuestionComponent implements OnInit, DoCheck {
   currentOptions: string[];
   userAnswer;
   correctAnswer;
-
+  checkAnswer = false;
   @Input() questionIndex: number;
   currentQuestion: string;
 
@@ -72,17 +72,20 @@ export class QuestionComponent implements OnInit, DoCheck {
       { user_answer: this.userAnswer, correct_answer: this.correctAnswer });
     setTimeout(() => {
       this.parent.goNext();
+      this.checkAnswer = false;
     }, 1000);
 
     if (this.userAnswer === this.correctAnswer) {
       console.log("Correct");
       this.labeli = "labeli";
-      this.inputi = "inputi"
+      this.inputi = "inputi";
+      this.checkAnswer = false;
     }
     else {
       console.log("Incorrect");
       this.labeli = "labeli2";
-      this.inputi = "inputi2"
+      this.inputi = "inputi2";
+      this.checkAnswer = true;
     }
   }
 
