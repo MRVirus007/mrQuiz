@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { QuestionComponent } from '../question/question.component';
 import { UserService } from '../shared/user.service'
 import { ActivatedRoute } from '@angular/router';
@@ -28,7 +27,6 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.uService.getUsers().subscribe(res => {
       this.userD = res;
-      console.log("MR DATA :" + res[0].payload.doc.data()['email']);
       console.log(this.userD);
     })
   }
