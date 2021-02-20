@@ -40,7 +40,7 @@ export class UserService {
     })
       .then(res => {
         console.log(res);
-        this.form.reset();
+        //this.form.reset();
       })
       .catch(e => {
         console.log(e);

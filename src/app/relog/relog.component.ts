@@ -32,7 +32,7 @@ export class RelogComponent implements OnInit {
     let data = this.uService.form.value;
     this.uService.createUser(data);
     this.zone.run(() => {
-      this.router.navigate(['/quiz']);
+      this.router.navigate(['/quiz', this.uService.form.value.email]);
     });
   }
 
