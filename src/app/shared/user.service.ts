@@ -35,7 +35,8 @@ export class UserService {
     this.firestore.collection('users').add({
       name: this.form.value.name,
       email: this.form.value.email,
-      pass: this.form.value.pass
+      pass: this.form.value.pass,
+      score: this.form.value.score
     })
       .then(res => {
         console.log(res);
