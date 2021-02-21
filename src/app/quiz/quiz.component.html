@@ -26,7 +26,7 @@
                   <th>Score</th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let use of userD">
+                  <tr *ngFor="let use of userD | slice:0:10">
                     <td>{{use.payload.doc.data().name}}</td>
                     <td>{{use.payload.doc.data().score}}</td>
                   </tr>

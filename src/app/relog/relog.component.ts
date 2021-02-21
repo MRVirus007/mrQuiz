@@ -17,6 +17,7 @@ export class RelogComponent implements OnInit {
   checkPass;
   userId;
   getUserName;
+  sorted;
   constructor(public uService: UserService,
     public router: Router,
     public zone: NgZone,
@@ -24,7 +25,7 @@ export class RelogComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUsers()
+
   }
 
   onSubmit() {
@@ -34,12 +35,6 @@ export class RelogComponent implements OnInit {
     this.zone.run(() => {
       this.router.navigate(['/quiz', this.uService.form.value.email]);
     });
-  }
-
-  getUsers() {
-    this.uService.getUsers().subscribe(res => {
-      this.user = res;
-    })
   }
 
   onSwitch() {

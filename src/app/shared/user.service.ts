@@ -51,6 +51,11 @@ export class UserService {
     return this.firestore.collection("users").snapshotChanges();
   }
 
+  getUsersScore() {
+    return this.firestore.collection('users', ref =>
+      ref.orderBy('score', 'desc')).snapshotChanges();
+  }
+
   // updateScore(email, score) {
   //   return this.firestore.collection("users", ref => ref.where('email', '==', email))
   //     .doc(data.payload.doc.id)

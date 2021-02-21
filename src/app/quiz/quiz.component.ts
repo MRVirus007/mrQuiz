@@ -25,9 +25,8 @@ export class QuizComponent implements OnInit {
     new EventEmitter<{ user_answer: string, correct_answer: string }>();
 
   ngOnInit(): void {
-    this.uService.getUsers().subscribe(res => {
+    this.uService.getUsersScore().subscribe(res => {
       this.userD = res;
-      console.log(this.userD);
     })
   }
 
@@ -56,15 +55,9 @@ export class QuizComponent implements OnInit {
     this.uService.updateDoc(this.email, this.score);
   }
 
-  // goPrevious() {
-  //   this.currentIndex--;
-  // }
-
   receiveAnswers(receivedAnswers) {
     console.log(receivedAnswers);
   }
-
-
 
   getTotalQuestions(totalQuestions: number) {
     this.totalQuestions = totalQuestions;
